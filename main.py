@@ -1,5 +1,6 @@
 
-import sys, sqlite3
+import sys
+import sqlite3
 from utils import db
 from utils import display
 from PyQt5.QtWidgets import QMainWindow, QApplication
@@ -14,6 +15,8 @@ from actions.action_fct_comp_3 import AppFctComp3
 from actions.action_fct_comp_4 import AppFctComp4
 
 # Classe utilisée pour lancer la fenêtre principale de l'application et définir ses actions
+
+
 class AppWindow(QMainWindow):
 
     # Création d'un signal destiné à être émis lorsque la table est modifiée
@@ -56,11 +59,13 @@ class AppWindow(QMainWindow):
 
         except Exception as e:
             # En cas d'erreur, on affiche un message
-            display.refreshLabel(self.ui.label_2, "L'erreur suivante s'est produite pendant lors de la création de la base : "+repr(e)+".")
+            display.refreshLabel(
+                self.ui.label_2, "L'erreur suivante s'est produite pendant lors de la création de la base : "+repr(e)+".")
 
         else:
             # Si tout s'est bien passé, on affiche le message de succès et on commit
-            display.refreshLabel(self.ui.label_2, "La base de données a été créée avec succès.")
+            display.refreshLabel(
+                self.ui.label_2, "La base de données a été créée avec succès.")
             self.data.commit()
             # On émet le signal indiquant la modification de la table
             self.changedValue.emit()
@@ -71,14 +76,18 @@ class AppWindow(QMainWindow):
         try:
             # On exécute les requêtes du fichier d'insertion
             db.updateDBfile(self.data, "data/insertDB.sql")
+            db.updateDBfile(self.data, "data/insert_disciplines.sql")
+            db.updateDBfile(self.data, "data/insert_disciplines_epreuves.sql")
 
         except Exception as e:
             # En cas d'erreur, on affiche un message
-            display.refreshLabel(self.ui.label_2, "L'erreur suivante s'est produite lors de l'insertion des données : "+repr(e)+".")
+            display.refreshLabel(
+                self.ui.label_2, "L'erreur suivante s'est produite lors de l'insertion des données : "+repr(e)+".")
 
         else:
             # Si tout s'est bien passé, on affiche le message de succès et on commit
-            display.refreshLabel(self.ui.label_2, "Un jeu de test a été inséré dans la base avec succès.")
+            display.refreshLabel(
+                self.ui.label_2, "Un jeu de test a été inséré dans la base avec succès.")
             self.data.commit()
             # On émet le signal indiquant la modification de la table
             self.changedValue.emit()
@@ -92,11 +101,13 @@ class AppWindow(QMainWindow):
 
         except Exception as e:
             # En cas d'erreur, on affiche un message
-            display.refreshLabel(self.ui.label_2, "Erreur lors de la suppression de la base de données : " + repr(e)+".")
+            display.refreshLabel(
+                self.ui.label_2, "Erreur lors de la suppression de la base de données : " + repr(e)+".")
 
         else:
             # Si tout s'est bien passé, on affiche le message de succès (le commit est automatique pour un DROP TABLE)
-            display.refreshLabel(self.ui.label_2, "La base de données a été supprimée avec succès.")
+            display.refreshLabel(
+                self.ui.label_2, "La base de données a été supprimée avec succès.")
             # On émet le signal indiquant la modification de la table
             self.changedValue.emit()
 
@@ -191,6 +202,7 @@ class AppWindow(QMainWindow):
 
         # On laisse l'évènement de clôture se terminer normalement
         event.accept()
+
 
 # Lancement de la fenêtre principale
 app = QApplication(sys.argv)
