@@ -59,10 +59,11 @@ class AppFctComp2(QDialog):
 
     def refreshCatList(self):
         try:
-            cursor = self.data.cursor()
-            result = cursor.execute(
-                "SELECT DISTINCT categorieEp FROM LesEpreuves")
+            self.add_range_item(self.ui.comboBox_categorie, [
+                                "masculin", "feminin", "mixte"])
         except Exception as e:
             self.ui.comboBox_categorie.clear()
-        else:
-            display.refreshGenericCombo(self.ui.comboBox_categorie, result)
+
+    def add_range_item(self, combo, data: list):
+        for i in data:
+            combo.addItem(i)
