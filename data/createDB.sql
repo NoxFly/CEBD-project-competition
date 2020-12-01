@@ -1,3 +1,9 @@
+CREATE TABLE LesDisciplines
+(
+  nomDi VARCHAR2(20),
+  CONSTRAINT DI_PK PRIMARY KEY (nomDi)
+);
+
 CREATE TABLE LesSportifs_base
 (
   numSp NUMBER(4),
@@ -26,6 +32,7 @@ CREATE TABLE LesEpreuves
   numEp NUMBER(3),
   nomEp VARCHAR2(20),
   formeEp VARCHAR2(13),
+  nomDi VARCHAR2(20),
   categorieEp VARCHAR2(10),
   nbSportifsEp NUMBER(2),
   dateEp DATE,

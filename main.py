@@ -1,5 +1,6 @@
 
-import sys, sqlite3
+import sys
+import sqlite3
 from utils import db
 from utils import display
 from PyQt5.QtWidgets import QMainWindow, QApplication
@@ -14,6 +15,8 @@ from actions.action_fct_comp_3 import AppFctComp3
 from actions.action_fct_comp_4 import AppFctComp4
 
 # Classe utilisée pour lancer la fenêtre principale de l'application et définir ses actions
+
+
 class AppWindow(QMainWindow):
 
     # Création d'un signal destiné à être émis lorsque la table est modifiée
@@ -71,6 +74,8 @@ class AppWindow(QMainWindow):
         try:
             # On exécute les requêtes du fichier d'insertion
             db.updateDBfile(self.data, "data/insertDB.sql")
+            db.updateDBfile(self.data, "data/insert_disciplines.sql")
+            db.updateDBfile(self.data, "data/insert_disciplines_epreuves.sql")
 
         except Exception as e:
             # En cas d'erreur, on affiche un message
@@ -191,6 +196,7 @@ class AppWindow(QMainWindow):
 
         # On laisse l'évènement de clôture se terminer normalement
         event.accept()
+
 
 # Lancement de la fenêtre principale
 app = QApplication(sys.argv)
