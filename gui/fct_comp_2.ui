@@ -40,7 +40,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_fct_comp_2"/>
+      <widget class="QComboBox" name="comboBox_categorie"/>
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_fct_comp_2">
@@ -115,7 +115,7 @@
    <slot>refreshResult()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>351</x>
+     <x>789</x>
      <y>51</y>
     </hint>
     <hint type="destinationlabel">

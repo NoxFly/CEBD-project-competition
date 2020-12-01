@@ -13,4 +13,4 @@ Compléter les fonctionnalités proposées :
 1. [ ] **Créer les vues** comprenant les attributs calculés et mettre à jour l'interface
 	- [ ] Créer la vue LesSportifs et modifier l'affichage (1.2)
 	- [ ] Créer la vue LesEquipes et modifier l'affichage (1.4)
-1. [ ] **Créer une table LesDisciplines**, insérer les données fournies, effacer les données de LesEpreuves, insérer les données incluant les disciplines des épreuves et modifier l'affichage (1.3)
+1. [x] **Créer une table LesDisciplines**, insérer les données fournies, effacer les données de LesEpreuves, insérer les données incluant les disciplines des épreuves et modifier l'affichage (1.3)
