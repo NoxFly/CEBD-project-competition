@@ -14,16 +14,16 @@ class AppFctComp4(QDialog):
         self.ui = uic.loadUi("gui/fct_comp_4.ui", self)
         self.data = data
         self.refreshCatList()
+        self.ui.comboBox_fct_4_pays.currentTextChanged.connect(self.on_combobox_changed)
 
     # Fonction de mise à jour de l'affichage
     def refreshResult(self):
-        # TODO 1.7 : fonction à modifier pour que l'équipe ne propose que des valeurs possibles pour le pays choisi
         display.refreshLabel(self.ui.label_fct_comp_4, "")
         try:
             cursor = self.data.cursor()
             result = cursor.execute(
                 "SELECT numSp, nomSp, prenomSp, categorieSp, dateNaisSp FROM LesSportifs_base JOIN LesEquipiers USING (numSp) WHERE pays = ? AND numEq=?",
-                [self.ui.comboBox_fct_4_pays.currentText(),self.ui.spinBox_fct_4_equipe.text().strip()]
+                [self.ui.comboBox_fct_4_pays.currentText(), int(self.ui.comboBox_fct_4_equipe.currentText())]
             )
         except Exception as e:
             self.ui.table_fct_comp_4.setRowCount(0)
@@ -36,11 +36,29 @@ class AppFctComp4(QDialog):
     # Fonction de mise à jour des catégories
     @pyqtSlot()
     def refreshCatList(self):
-
         try:
             cursor = self.data.cursor()
             result = cursor.execute("SELECT DISTINCT pays FROM LesSportifs_base ORDER BY pays")
         except Exception as e:
             self.ui.comboBox_fct_4_pays.clear()
+            self.ui.comboBox_fct_4_equipe.clear()
         else:
             display.refreshGenericCombo(self.ui.comboBox_fct_4_pays, result)
+
+    def on_combobox_changed(self, value):
+        # changer le select des numéros d'équipe en fonction du pays sélectionner ici
+        try:
+            cursor = self.data.cursor()
+            result = cursor.execute("SELECT numEq FROM LesEquipiers E JOIN LesSportifs_base S ON E.numSp = S.numSp WHERE S.pays = ? GROUP BY numEq",
+                [self.ui.comboBox_fct_4_pays.currentText()]
+            )
+
+            rows = cursor.fetchall()
+        except Exception as e:
+            self.ui.table_fct_comp_4.setRowCount(0)
+            display.refreshLabel(self.ui.label_fct_comp_4, f"Impossible de charger les équipe du pays {value} : {repr(e)}")
+        else:
+            self.ui.comboBox_fct_4_equipe.clear()
+            for row in rows:
+                for numEq in row:
+                    self.ui.comboBox_fct_4_equipe.addItem(str(numEq))
