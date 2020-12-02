@@ -1,30 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>fct_comp_3</class>
- <widget class="QDialog" name="fct_comp_3">
+ <class>fct_comp_1</class>
+ <widget class="QDialog" name="fct_comp_1">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>378</height>
+    <width>701</width>
+    <height>517</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Liste des épreuves d'une catégorie (version 2, catégories extraites de la BD)</string>
+   <string>Nom, Prénom, pays, catégorie des sportifs d'une équipe</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
      <item>
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="label">
        <property name="text">
-        <string>Saisissez une catégorie :</string>
+        <string>Saisissez un numéro d'équipe :</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBox_categorie"/>
+      <widget class="QLineEdit" name="lineEdit"/>
      </item>
      <item>
       <widget class="QPushButton" name="pushButton">
@@ -36,20 +39,34 @@
     </layout>
    </item>
    <item row="1" column="0">
-    <widget class="QLabel" name="label">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item alignment="Qt::AlignHCenter">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Travail à réaliser : Ajouter la date de naissance des sportifs de l'équipe</string>
+       </property>
+       <property name="scaledContents">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_fct_comp_1">
      <property name="text">
-      <string>Travail à réaliser : améliorer l'interface afin de proposer une liste des catégories possibles (issues de la base de données).</string>
+      <string/>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
-     <property name="wordWrap">
-      <bool>true</bool>
-     </property>
     </widget>
    </item>
    <item row="2" column="0">
-    <widget class="QTableWidget" name="table_fct_comp_3">
+    <widget class="QTableWidget" name="table_fct_comp_1">
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>110</number>
+     </attribute>
      <attribute name="horizontalHeaderMinimumSectionSize">
       <number>50</number>
      </attribute>
@@ -61,44 +78,29 @@
      </attribute>
      <column>
       <property name="text">
-       <string>numEp</string>
+       <string>nomSp</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>nomEp</string>
+       <string>prenomSp</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>formeEp</string>
+       <string>pays</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>nomDi</string>
+       <string>categorieSp</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>nbSportifsEp</string>
+       <string>DateNaisSp</string>
       </property>
      </column>
-     <column>
-      <property name="text">
-       <string>dateEp</string>
-      </property>
-     </column>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QLabel" name="label_fct_comp_3">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
     </widget>
    </item>
   </layout>
@@ -108,16 +110,16 @@
   <connection>
    <sender>pushButton</sender>
    <signal>clicked()</signal>
-   <receiver>fct_comp_3</receiver>
+   <receiver>fct_comp_1</receiver>
    <slot>refreshResult()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>364</x>
-     <y>52</y>
+     <x>690</x>
+     <y>31</y>
     </hint>
     <hint type="destinationlabel">
-     <x>444</x>
-     <y>81</y>
+     <x>91</x>
+     <y>1</y>
     </hint>
    </hints>
   </connection>

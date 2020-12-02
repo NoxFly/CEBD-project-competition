@@ -6,12 +6,14 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5 import uic
 
 # Classe permettant d'afficher la fonction à compléter 1
+
+
 class AppFctComp1(QDialog):
 
     # Constructeur
-    def __init__(self, data:sqlite3.Connection):
+    def __init__(self, data: sqlite3.Connection):
         super(QDialog, self).__init__()
-        self.ui = uic.loadUi("gui/fct_comp_1.ui", self)
+        self.ui = uic.loadUi("gui/fct_comp_1_changed.ui", self)
         self.data = data
         self.refreshResult()
 
