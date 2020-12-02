@@ -38,7 +38,7 @@ class AppFctComp4(QDialog):
     def refreshCatList(self):
         try:
             cursor = self.data.cursor()
-            result = cursor.execute("SELECT DISTINCT pays FROM LesSportifs_base ORDER BY pays")
+            result = cursor.execute("SELECT DISTINCT S.pays FROM LesSportifs_base S LEFT JOIN LesEquipiers E On E.numSp = S.numSp GROUP BY S.pays HAVING COUNT(numEq) > 0")
         except Exception as e:
             self.ui.comboBox_fct_4_pays.clear()
             self.ui.comboBox_fct_4_equipe.clear()
