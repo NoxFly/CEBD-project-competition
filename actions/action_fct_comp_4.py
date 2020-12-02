@@ -45,12 +45,18 @@ class AppFctComp4(QDialog):
         else:
             display.refreshGenericCombo(self.ui.comboBox_fct_4_pays, result)
 
+            if len(self.ui.comboBox_fct_4_pays.currentText()) > 0:
+                self.on_combobox_changed(self.ui.comboBox_fct_4_pays.currentText())
+
+
+
+
     def on_combobox_changed(self, value):
         # changer le select des numéros d'équipe en fonction du pays sélectionner ici
         try:
             cursor = self.data.cursor()
             result = cursor.execute("SELECT numEq FROM LesEquipiers E JOIN LesSportifs_base S ON E.numSp = S.numSp WHERE S.pays = ? GROUP BY numEq",
-                [self.ui.comboBox_fct_4_pays.currentText()]
+                [value]
             )
 
             rows = cursor.fetchall()
