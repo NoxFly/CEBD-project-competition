@@ -1,3 +1,5 @@
+-- TABLES
+
 CREATE TABLE LesDisciplines
 (
   nomDi VARCHAR2(20),
@@ -64,5 +66,17 @@ CREATE TABLE LesResultats
   CONSTRAINT RES_FK3 FOREIGN KEY (bronze, numEp) REFERENCES LesInscriptions(numIn,numEp),
   CONSTRAINT RES_CK1 CHECK (gold<>silver AND silver<>bronze AND gold<>bronze)
 );
--- TODO 1.2a : ajouter la définition de la vue LesSportifs
--- TODO 1.4a : ajouter la définition de la vue LesEquipes
+
+
+-- VIEWS
+
+CREATE VIEW LesSportifs AS
+SELECT numSp, nomSp, prenomSp, pays, categorieSp, dateNaisSp,
+  (strftime('%Y', 'now') - strftime('%Y', dateNaisSp)) - (strftime('%m%d', 'now') < strftime('%m%d', 'now')) AS ageSp
+FROM LesSportifs_base;
+
+
+CREATE VIEW LesEquipes AS
+SELECT numEq, COUNT(numSp) AS nbEquipiersEq
+FROM LesEquipiers
+GROUP BY numEq;
