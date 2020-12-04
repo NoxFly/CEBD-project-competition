@@ -24,6 +24,16 @@ Compléter les fonctionnalités proposées :
 Créer les nouvelles fonctionnalitées proposées.
 
 - [x] **Créer des nouvelles fenêtres** dans l'interface
-	- [x] Afficher l'âge moyen des équipes qui ont gagné une médaille d'or (2.1)
-	- [x] Afficher le classement des pays selon leur nombre de médailles (pays, nbOr, nbArgent, nbBronze) (2.2)
+	- [x] Afficher l'**âge moyen des équipes qui ont gagné une médaille d'or** (2.1)
+	- [x] Afficher le **classement des pays** selon leur nombre de médailles (pays, nbOr, nbArgent, nbBronze) (2.2)
 - [x] Gérer les évènements et les associer à des nouvelles actions (2.1 + 2.2)
+
+
+## Partie 3
+
+Partie libre (2 exemples donnés)
+
+- [ ] Imaginer des **nouvells fonctionnalités** de l'application (**insert**, **delete**, **update**, ...)
+	- [ ] Gérer des **inscriptions** à des épreuves
+	- [ ] Gérer des **résultats** aux épreuves
+- [ ] Implémenter un **trigger**
