@@ -22,7 +22,7 @@ class AppFctFournie1(QDialog):
         display.refreshLabel(self.ui.label_fct_fournie_1, "")
         try:
             cursor = self.data.cursor()
-            result = cursor.execute("SELECT nomSp, prenomSp, pays, categorieSp FROM LesSportifs_base JOIN LesEquipiers USING (numSp) WHERE numEq = 1")
+            result = cursor.execute("SELECT nomSp, prenomSp, pays, categorieSp FROM LesSportifs_base INNER JOIN LesEquipiers USING (numSp) WHERE numEq = 1")
         except Exception as e:
             self.ui.table_fct_fournie_1.setRowCount(0)
             display.refreshLabel(self.ui.label_fct_fournie_1, "Impossible d'afficher les résultats : " + repr(e))

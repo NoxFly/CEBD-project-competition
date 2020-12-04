@@ -189,7 +189,6 @@ class AppWindow(QMainWindow):
     # Fonctions liées aux évènements (signal/slot/event)
     ####################################################################################################################
 
-    # TODO 2 : penser à fermer comme il faut les fenêtres de la partie 2
     # TODO 3 : penser à fermer comme il faut les fenêtres de la partie 3
 
     # On intercepte l'évènement de cloture de la fenêtre principale pour intercaler quelques actions avant sa fermeture

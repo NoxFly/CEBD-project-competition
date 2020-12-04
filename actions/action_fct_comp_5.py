@@ -22,7 +22,7 @@ class AppFctComp5(QDialog):
             cursor = self.data.cursor()
             result = cursor.execute("""SELECT E.numEq, M.pays, E.nbEquipiersEq, MIN(M.ageSp) AS minAge, MAX(M.ageSp) AS maxAge, ROUND(AVG(M.ageSp)) AS moyenneAge
                 FROM LesEquipes E
-                JOIN (
+                INNER JOIN (
                     SELECT S.numSP, E.numEq, S.ageSp, S.pays
                     FROM LesSportifs S
                     LEFT JOIN LesEquipiers E
@@ -30,12 +30,12 @@ class AppFctComp5(QDialog):
                     WHERE E.numEq IS NOT NULL
                 ) AS M
                 ON E.numEq = M.numEq
-                JOIN LesResultats R
+                INNER JOIN LesResultats R
                 ON E.numEq = R.gold
                 GROUP BY E.numEq
                 ORDER BY E.numEq""")
         except Exception as e:
-            display.refreshLabel(self.ui.label_fct_comp_5, "Une erreur est survenue")
+            display.refreshLabel(self.ui.label_fct_comp_5, "Une erreur est survenue : " + repr(e))
         else:
             i = display.refreshGenericData(self.ui.table_fct_comp_5, result)
 

@@ -33,27 +33,34 @@
    </attribute>
    <column>
     <property name="text">
-     <string>numEq</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
      <string>pays</string>
+    </property>
+    <property name="textAlignment">
+     <set>AlignCenter</set>
     </property>
    </column>
    <column>
     <property name="text">
      <string>nbOr</string>
     </property>
+    <property name="textAlignment">
+     <set>AlignCenter</set>
+    </property>
    </column>
    <column>
     <property name="text">
      <string>nbArgent</string>
     </property>
+    <property name="textAlignment">
+     <set>AlignCenter</set>
+    </property>
    </column>
    <column>
     <property name="text">
      <string>nbBronze</string>
+    </property>
+    <property name="textAlignment">
+     <set>AlignCenter</set>
     </property>
    </column>
   </widget>
