@@ -834,8 +834,8 @@
    <slot>createDB()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>189</x>
-     <y>69</y>
+     <x>185</x>
+     <y>66</y>
     </hint>
     <hint type="destinationlabel">
      <x>135</x>
@@ -850,8 +850,8 @@
    <slot>insertDB()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>423</x>
-     <y>69</y>
+     <x>411</x>
+     <y>66</y>
     </hint>
     <hint type="destinationlabel">
      <x>388</x>
@@ -866,8 +866,8 @@
    <slot>deleteDB()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>611</x>
-     <y>69</y>
+     <x>597</x>
+     <y>66</y>
     </hint>
     <hint type="destinationlabel">
      <x>598</x>
@@ -882,8 +882,8 @@
    <slot>openData()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>463</x>
-     <y>109</y>
+     <x>446</x>
+     <y>106</y>
     </hint>
     <hint type="destinationlabel">
      <x>498</x>
@@ -898,8 +898,8 @@
    <slot>open_fct_fournie_1()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>579</x>
-     <y>209</y>
+     <x>543</x>
+     <y>206</y>
     </hint>
     <hint type="destinationlabel">
      <x>79</x>
@@ -914,8 +914,8 @@
    <slot>open_fct_fournie_2()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>518</x>
-     <y>249</y>
+     <x>492</x>
+     <y>246</y>
     </hint>
     <hint type="destinationlabel">
      <x>116</x>
@@ -930,8 +930,8 @@
    <slot>open_fct_comp_1()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>544</x>
-     <y>333</y>
+     <x>514</x>
+     <y>330</y>
     </hint>
     <hint type="destinationlabel">
      <x>515</x>
@@ -946,8 +946,8 @@
    <slot>open_fct_comp_2()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>592</x>
-     <y>379</y>
+     <x>554</x>
+     <y>376</y>
     </hint>
     <hint type="destinationlabel">
      <x>576</x>
@@ -962,8 +962,8 @@
    <slot>open_fct_comp_3()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>588</x>
-     <y>429</y>
+     <x>551</x>
+     <y>426</y>
     </hint>
     <hint type="destinationlabel">
      <x>551</x>
@@ -978,8 +978,8 @@
    <slot>open_fct_comp_4()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>484</x>
-     <y>479</y>
+     <x>464</x>
+     <y>476</y>
     </hint>
     <hint type="destinationlabel">
      <x>521</x>
@@ -994,8 +994,8 @@
    <slot>open_fct_comp_5()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>152</x>
-     <y>566</y>
+     <x>326</x>
+     <y>570</y>
     </hint>
     <hint type="destinationlabel">
      <x>136</x>
@@ -1010,12 +1010,28 @@
    <slot>open_fct_comp_6()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>649</x>
-     <y>617</y>
+     <x>602</x>
+     <y>621</y>
     </hint>
     <hint type="destinationlabel">
      <x>627</x>
      <y>592</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_13</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>open_fct_add_1()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>352</x>
+     <y>705</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>355</x>
+     <y>407</y>
     </hint>
    </hints>
   </connection>
@@ -1035,5 +1051,6 @@
   <slot>open_fct_comp_4()</slot>
   <slot>open_fct_comp_5()</slot>
   <slot>open_fct_comp_6()</slot>
+  <slot>open_fct_add_1()</slot>
  </slots>
 </ui>

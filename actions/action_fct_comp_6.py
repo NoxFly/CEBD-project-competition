@@ -6,10 +6,12 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5 import uic
 
 # Classe permettant d'afficher la fonction à compléter 4
+
+
 class AppFctComp6(QDialog):
 
     # Constructeur
-    def __init__(self, data:sqlite3.Connection):
+    def __init__(self, data: sqlite3.Connection):
         super(QDialog, self).__init__()
         self.ui = uic.loadUi("gui/fct_comp_6.ui", self)
         self.data = data
@@ -36,7 +38,7 @@ class AppFctComp6(QDialog):
                     JOIN PaysEquipe ON numEq IN (gold, silver, bronze)
                     GROUP BY pays
                     UNION ALL
-                    SELECT pays, 
+                    SELECT pays,
                         SUM(numSp = gold) AS gold,
                         SUM(numSp = silver) AS silver,
                         SUM(numSp = bronze) AS bronze
@@ -49,9 +51,11 @@ class AppFctComp6(QDialog):
                 GROUP BY pays
                 ORDER BY nbOr DESC, nbArgent DESC, nbBronze DESC""")
         except Exception as e:
-            display.refreshLabel(self.ui.label_fct_comp_6, "Une erreur est survenue : " + repr(e))
+            display.refreshLabel(self.ui.label_fct_comp_6,
+                                 "Une erreur est survenue : " + repr(e))
         else:
             i = display.refreshGenericData(self.ui.table_fct_comp_6, result)
 
             if i == 0:
-                display.refreshLabel(self.ui.label_fct_comp_6, "Aucun résultat")
+                display.refreshLabel(
+                    self.ui.label_fct_comp_6, "Aucun résultat")

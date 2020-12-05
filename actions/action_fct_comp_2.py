@@ -20,28 +20,7 @@ class AppFctComp2(QDialog):
     # Fonction de mise à jour de l'affichage
     @pyqtSlot()
     def refreshResult(self):
-        # TODO 1.5 : fonction à modifier pour remplacer la zone de saisie par une liste de valeurs prédéfinies dans l'interface une fois le fichier ui correspondant mis à jour
         display.refreshLabel(self.ui.label_fct_comp_2, "")
-        """ if not self.ui.lineEdit_fct_comp_2.text().strip():
-            self.ui.table_fct_comp_2.setRowCount(0)
-            display.refreshLabel(self.ui.label_fct_comp_2,
-                                 "Veuillez indiquer un nom de catégorie")
-        else:
-            try:
-                cursor = self.data.cursor()
-                result = cursor.execute(
-                    "SELECT numEp, nomEp, formeEp, nomDi, nbSportifsEp, dateEp FROM LesEpreuves WHERE categorieSp = ?",
-                    [self.ui.lineEdit_fct_comp_2.text().strip()])
-            except Exception as e:
-                self.ui.table_fct_comp_2.setRowCount(0)
-                display.refreshLabel(
-                    self.ui.label_fct_comp_2, "Impossible d'afficher les résultats : " + repr(e))
-            else:
-                i = display.refreshGenericData(
-                    self.ui.table_fct_comp_2, result)
-                if i == 0:
-                    display.refreshLabel(
-                        self.ui.label_fct_comp_2, "Aucun résultat") """
         try:
             cursor = self.data.cursor()
             result = cursor.execute("SELECT numEp, nomEp, formeEp, nomDi, nbSportifsEp, dateEp FROM LesEpreuves WHERE categorieEp = ?",

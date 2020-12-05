@@ -15,6 +15,7 @@ from actions.action_fct_comp_3 import AppFctComp3
 from actions.action_fct_comp_4 import AppFctComp4
 from actions.action_fct_comp_5 import AppFctComp5
 from actions.action_fct_comp_6 import AppFctComp6
+from actions.action_add_comp_1 import AppAddFct1
 
 # Classe utilisée pour lancer la fenêtre principale de l'application et définir ses actions
 
@@ -37,6 +38,8 @@ class AppWindow(QMainWindow):
     fct_comp_4_dialog = None
     fct_comp_5_dialog = None
     fct_comp_6_dialog = None
+    fct_add_1_dialog = None
+    fct_add_2_dialog = None
 
     # Constructeur
     def __init__(self):
@@ -63,11 +66,13 @@ class AppWindow(QMainWindow):
 
         except Exception as e:
             # En cas d'erreur, on affiche un message
-            display.refreshLabel(self.ui.label_2, "L'erreur suivante s'est produite pendant lors de la création de la base : "+repr(e)+".")
+            display.refreshLabel(
+                self.ui.label_2, "L'erreur suivante s'est produite pendant lors de la création de la base : "+repr(e)+".")
 
         else:
             # Si tout s'est bien passé, on affiche le message de succès et on commit
-            display.refreshLabel(self.ui.label_2, "La base de données a été créée avec succès.")
+            display.refreshLabel(
+                self.ui.label_2, "La base de données a été créée avec succès.")
             self.data.commit()
             # On émet le signal indiquant la modification de la table
             self.changedValue.emit()
@@ -83,11 +88,13 @@ class AppWindow(QMainWindow):
 
         except Exception as e:
             # En cas d'erreur, on affiche un message
-            display.refreshLabel(self.ui.label_2, "L'erreur suivante s'est produite lors de l'insertion des données : "+repr(e)+".")
+            display.refreshLabel(
+                self.ui.label_2, "L'erreur suivante s'est produite lors de l'insertion des données : "+repr(e)+".")
 
         else:
             # Si tout s'est bien passé, on affiche le message de succès et on commit
-            display.refreshLabel(self.ui.label_2, "Un jeu de test a été inséré dans la base avec succès.")
+            display.refreshLabel(
+                self.ui.label_2, "Un jeu de test a été inséré dans la base avec succès.")
             self.data.commit()
             # On émet le signal indiquant la modification de la table
             self.changedValue.emit()
@@ -101,11 +108,13 @@ class AppWindow(QMainWindow):
 
         except Exception as e:
             # En cas d'erreur, on affiche un message
-            display.refreshLabel(self.ui.label_2, "Erreur lors de la suppression de la base de données : " + repr(e)+".")
+            display.refreshLabel(
+                self.ui.label_2, "Erreur lors de la suppression de la base de données : " + repr(e)+".")
 
         else:
             # Si tout s'est bien passé, on affiche le message de succès (le commit est automatique pour un DROP TABLE)
-            display.refreshLabel(self.ui.label_2, "La base de données a été supprimée avec succès.")
+            display.refreshLabel(
+                self.ui.label_2, "La base de données a été supprimée avec succès.")
             # On émet le signal indiquant la modification de la table
             self.changedValue.emit()
 
@@ -185,10 +194,17 @@ class AppWindow(QMainWindow):
         self.fct_comp_6_dialog.show()
         self.changedValue.connect(self.fct_comp_6_dialog.refreshCatList)
 
+    def open_fct_add_1(self):
+        if (self.fct_add_1_dialog is not None):
+            self.fct_add_1_dialog.close()
+        self.fct_add_1_dialog = AppAddFct1(self.data)
+        self.fct_add_1_dialog.show()
+
     ####################################################################################################################
     # Fonctions liées aux évènements (signal/slot/event)
     ####################################################################################################################
 
+    # TODO 2 : penser à fermer comme il faut les fenêtres de la partie 2
     # TODO 3 : penser à fermer comme il faut les fenêtres de la partie 3
 
     # On intercepte l'évènement de cloture de la fenêtre principale pour intercaler quelques actions avant sa fermeture
@@ -209,12 +225,17 @@ class AppWindow(QMainWindow):
             self.fct_comp_3_dialog.close()
         if (self.fct_comp_4_dialog is not None):
             self.fct_comp_4_dialog.close()
+        if (self.fct_add_1_dialog is not None):
+            self.fct_add_1_dialog.close()
+        if (self.fct_add_2_dialog is not None):
+            self.fct_add_2_dialog.close()
 
         # On ferme proprement la base de données
         self.data.close()
 
         # On laisse l'évènement de clôture se terminer normalement
         event.accept()
+
 
 # Lancement de la fenêtre principale
 app = QApplication(sys.argv)
