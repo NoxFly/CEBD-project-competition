@@ -61,13 +61,11 @@ class AppAddFct1(QDialog):
             self.add_range_item(self.ui.Pays_combo,result)
 
     def choise_country(self,value):
-        print("update")
         if value == "Choisir un pays":
             self.pays = ""
             return
         self.pays = value
         if self.choise_all():
-            print("request")
             self.choise_categorie(self.categorie)
 
     def choise_discipline(self, value):
@@ -140,6 +138,7 @@ class AppAddFct1(QDialog):
             self.forme = value
 
     def choise_categorie(self,value):
+        print(f"Pays courant : {self.pays}")
         if self.categorie != "":
             self.ui.Equipe_combo.clear()
         if value == "Choisir une catégorie":
@@ -151,7 +150,7 @@ class AppAddFct1(QDialog):
             rows = query.fetchall()
             print(f"Valeur de la query : {rows}")
             if rows == []:
-                print("Aucune epreuve associée")
+                display.refreshLabel(self.ui.print_label,"Aucune épreuve associée")
                 return
             self.numEp = rows[0][0]
             result = []
@@ -160,12 +159,16 @@ class AppAddFct1(QDialog):
                     add:str = f" pays = '{self.pays}' AND "
                 else:
                     add:str = " "
+                if value != "mixte":
+                    cat:str = f" AND categorieSp = {value} "
+                else:
+                    cat:str = " "
                 req = f"""
                 SELECT nomSp, prenomSp
                 from LesSportifs
                 where{add}numSp NOT IN (
                 select numIn from LesInscriptions where numEp = ?
-                ) AND categorieSp = ?
+                ){cat}
                 """
                 result = cursor.execute(req,[self.numEp, value])
             else :
@@ -200,8 +203,6 @@ class AppAddFct1(QDialog):
         except Exception as e:
             print("probleme")
             print(e)
-            print(self.numEp)
-            print(query.fetchall())
             display.refreshLabel(self.ui.print_label, f"Erreur dans la recherche des inscrits")
         else:
             rows = result.fetchall()
@@ -215,10 +216,11 @@ class AppAddFct1(QDialog):
             else:
                 self.ui.Equipe_combo.addItem("Choisir une equipe")
                 self.add_range_item(self.ui.Equipe_combo,rows)
+            self.categorie = value
 
     def choise_competitor(self,value):
         print(f"valeur des competiteur : {value}")
-        if value == "Choisir un sportif" or value == "":
+        if value in ["", "Choisir un sportif", "Choisir une equipe"]:
             return
         try:
             int(value)
@@ -258,3 +260,9 @@ class AppAddFct1(QDialog):
 
     def choise_all(self):
         return self.discipline and self.epreuve and self.forme and self.categorie
+
+    def print_values(self):
+        print(f"1 -> {self.discipline}")
+        print(f"2 -> {self.epreuve}")
+        print(f"3 -> {self.forme}")
+        print(f"4 -> {self.categorie}")
