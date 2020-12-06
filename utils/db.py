@@ -12,6 +12,5 @@ def updateDBfile(data:sqlite3.Connection, file):
     sqlQueries = createSql.split(";")
 
     # Exécution de toutes les requêtes du tableau
-    cursor = data.cursor()
     for query in sqlQueries:
-        cursor.execute(query)
+        data.cursor().execute(query)

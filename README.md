@@ -1,7 +1,5 @@
 ## Partie 3
 
-### 3.1
-
 Partie libre (2 exemples donnés)
 
 - [ ] 3.1 : Imaginer des **nouvelles fonctionnalités** de l'application (**insert**, **delete**, **update**, ...)

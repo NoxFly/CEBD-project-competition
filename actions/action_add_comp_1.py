@@ -69,9 +69,11 @@ class AppAddFct1(QDialog):
     def update_country(self):
         try:
             result = self.data.cursor().execute("SELECT DISTINCT pays from LesSportifs")
+        
         except Exception as e:
             print(e)
             display.refreshLabel(self.ui.print_label, f"Erreur dans la recherche des pays")
+        
         else:
             self.ui.Pays_combo.clear()
             self.ui.Pays_combo.addItem("Choisir un pays")
@@ -112,10 +114,12 @@ class AppAddFct1(QDialog):
 
         try:
             result = self.data.cursor().execute("SELECT DISTINCT nomEp FROM LesEpreuves WHERE nomDi = ?", [value])
+        
         except Exception as e:
             print(e)
             display.refreshLabel(self.ui.print_label, "Erreur dans la recherche des épreuves")
             self.enableComboBox(['epreuve', 'pays', 'forme', 'categorie', 'equipe'], False)
+        
         else:
             rows = result.fetchall()
 
@@ -150,10 +154,12 @@ class AppAddFct1(QDialog):
 
         try:
             result = self.data.cursor().execute("SELECT distinct formeEp from LesEpreuves where nomEp = ?", [value])
+        
         except Exception as e:
             print(e)
             display.refreshLabel(self.ui.print_label, f"Erreur dans la recherche des formes d'épreuve")
             self.enableComboBox(['forme', 'pays', 'categorie', 'equipe'], False)
+        
         else:
             display.refreshLabel(self.ui.print_label, "")
             self.ui.Forme_combo.clear()
@@ -177,10 +183,12 @@ class AppAddFct1(QDialog):
 
         try:
             result = self.data.cursor().execute("SELECT categorieEp FROM LesEpreuves WHERE nomEp = ? AND formeEp = ?", [self.epreuve, value])
+        
         except Exception as e:
             print(e)
             display.refreshLabel(self.ui.print_label, f"Erreur dans la recherche des catégories")
             self.enableComboBox(['categorie', 'pays', 'equipe'], False)
+        
         else:
             self.ui.Categorie_combo.clear()
             self.ui.Categorie_combo.addItem("Choisir une catégorie")
@@ -275,6 +283,7 @@ class AppAddFct1(QDialog):
             print(e)
             display.refreshLabel(self.ui.print_label, f"Erreur dans la recherche des inscrits")
             self.enableComboBox(['equipe'], False)
+        
         else:
             rows = res.fetchall()
             if not rows:
@@ -299,9 +308,11 @@ class AppAddFct1(QDialog):
         if value not in ["", "Choisir un sportif", "Choisir une équipe"]:
             try:
                 int(value)
+            
             except ValueError:
                 NumSportif = self.data.cursor().execute("SELECT numSp FROM LesSportifs WHERE nomSp = ? AND prenomSp = ?", value.split(" "))
                 value = NumSportif.fetchall()[0][0]
+            
             finally:
                 self.competitor = value
 
@@ -311,8 +322,10 @@ class AppAddFct1(QDialog):
         else:
             try:
                 result = self.data.cursor().execute("INSERT INTO LesInscriptions(numIn, numEp) VALUES (?, ?)", [self.competitor, self.numEp])
+            
             except Exception as e:
                 display.refreshLabel(self.ui.print_label, "Une erreur est survenue lors de l'inscription")
+            
             else:
                 self.ui.Epreuve_combo.clear()
                 self.ui.Forme_combo.clear()

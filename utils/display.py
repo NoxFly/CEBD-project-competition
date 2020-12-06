@@ -5,7 +5,6 @@ from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem
 # Fonction permettant d'afficher un set de résultat sqlite dans un élément de type tableWidget
 # La fonction retourne le nombre de lignes qui ont été affichées
 def refreshGenericData(qtablewidget: PyQt5.QtWidgets.QTableWidgetItem, result):
-
     qtablewidget.setEditTriggers(QTableWidget.NoEditTriggers)
 
     # On remet le nombre de ligne de la table à 0 pour raffraichir l'affichage
@@ -29,7 +28,6 @@ def refreshGenericCombo(combo, result):
 
 # Fonction permettant de mettre à jour un label, adaptée à tous les OS
 def refreshLabel(qlabel: PyQt5.QtWidgets.QLabel, text):
-
     # Mise à jour du texte du tabel
     qlabel.setText(text)
 

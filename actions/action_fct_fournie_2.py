@@ -15,19 +15,20 @@ class AppFctFournie2(QDialog):
 
     # Fonction de mise à jour de l'affichage
     def refreshResult(self):
-
         display.refreshLabel(self.ui.label_fct_fournie_2, "")
+
         if not self.ui.lineEdit.text().strip():
             self.ui.table_fct_fournie_2.setRowCount(0)
             display.refreshLabel(self.ui.label_fct_fournie_2, "Veuillez indiquer un numéro d'équipe")
+
         else:
             try:
-                cursor = self.data.cursor()
-                result = cursor.execute("SELECT nomSp, prenomSp, pays, categorieSp FROM LesSportifs_base INNER JOIN LesEquipiers USING (numSp) WHERE numEq=?", [self.ui.lineEdit.text().strip()])
+                result = self.data.cursor().execute("SELECT nomSp, prenomSp, pays, categorieSp FROM LesSportifs_base INNER JOIN LesEquipiers USING (numSp) WHERE numEq=?", [self.ui.lineEdit.text().strip()])
+            
             except Exception as e:
                 self.ui.table_fct_fournie_2.setRowCount(0)
                 display.refreshLabel(self.ui.label_fct_fournie_2, "Impossible d'afficher les résultats : " + repr(e))
+
             else:
-                i = display.refreshGenericData(self.ui.table_fct_fournie_2, result)
-                if i == 0:
+                if display.refreshGenericData(self.ui.table_fct_fournie_2, result) == 0:
                     display.refreshLabel(self.ui.label_fct_fournie_2, "Aucun résultat")

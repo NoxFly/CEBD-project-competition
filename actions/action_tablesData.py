@@ -29,9 +29,11 @@ class AppTablesData(QDialog):
         try:
             cursor = self.data.cursor()
             result = cursor.execute(query)
+
         except Exception as e:
             table.setRowCount(0)
             display.refreshLabel(label, "Impossible d'afficher les données de la table : " + repr(e))
+            
         else:
             display.refreshGenericData(table, result)
 

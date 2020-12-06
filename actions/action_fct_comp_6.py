@@ -21,8 +21,7 @@ class AppFctComp6(QDialog):
     @pyqtSlot()
     def refreshCatList(self):
         try:
-            cursor = self.data.cursor()
-            result = cursor.execute("""WITH
+            result = self.data.cursor().execute("""WITH
                 PaysEquipe AS (
                     SELECT numEq, pays
                     FROM LesEquipiers
@@ -50,12 +49,10 @@ class AppFctComp6(QDialog):
                 FROM PaysMedailles
                 GROUP BY pays
                 ORDER BY nbOr DESC, nbArgent DESC, nbBronze DESC""")
-        except Exception as e:
-            display.refreshLabel(self.ui.label_fct_comp_6,
-                                 "Une erreur est survenue : " + repr(e))
-        else:
-            i = display.refreshGenericData(self.ui.table_fct_comp_6, result)
 
-            if i == 0:
-                display.refreshLabel(
-                    self.ui.label_fct_comp_6, "Aucun résultat")
+        except Exception as e:
+            display.refreshLabel(self.ui.label_fct_comp_6, "Une erreur est survenue : " + repr(e))
+
+        else:
+            if display.refreshGenericData(self.ui.table_fct_comp_6, result) == 0:
+                display.refreshLabel(self.ui.label_fct_comp_6, "Aucun résultat")

@@ -5,9 +5,7 @@ from PyQt5.QtWidgets import QDialog, QTableWidgetItem
 from PyQt5.QtCore import pyqtSlot
 from PyQt5 import uic
 
-# Classe permettant d'afficher la fonction à compléter 4
 class AppFctComp5(QDialog):
-
     # Constructeur
     def __init__(self, data:sqlite3.Connection):
         super(QDialog, self).__init__()
@@ -19,8 +17,7 @@ class AppFctComp5(QDialog):
     @pyqtSlot()
     def refreshCatList(self):
         try:
-            cursor = self.data.cursor()
-            result = cursor.execute("""SELECT E.numEq, M.pays, E.nbEquipiersEq, MIN(M.ageSp) AS minAge, MAX(M.ageSp) AS maxAge, ROUND(AVG(M.ageSp)) AS moyenneAge
+            result = self.data.cursor().execute("""SELECT E.numEq, M.pays, E.nbEquipiersEq, MIN(M.ageSp) AS minAge, MAX(M.ageSp) AS maxAge, ROUND(AVG(M.ageSp)) AS moyenneAge
                 FROM LesEquipes E
                 INNER JOIN (
                     SELECT S.numSP, E.numEq, S.ageSp, S.pays
@@ -34,10 +31,10 @@ class AppFctComp5(QDialog):
                 ON E.numEq = R.gold
                 GROUP BY E.numEq
                 ORDER BY E.numEq""")
+
         except Exception as e:
             display.refreshLabel(self.ui.label_fct_comp_5, "Une erreur est survenue : " + repr(e))
-        else:
-            i = display.refreshGenericData(self.ui.table_fct_comp_5, result)
 
-            if i == 0:
+        else:
+            if display.refreshGenericData(self.ui.table_fct_comp_5, result) == 0:
                 display.refreshLabel(self.ui.label_fct_comp_5, "Aucun résultat")
