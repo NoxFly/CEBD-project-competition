@@ -2,7 +2,11 @@
 
 Projet Python & SQLite réalisé par Leer0r (Lilian Russo) et NoxFly (Dorian Thivolle).
 
-Chaque branche correspond à une partie.
+Toute partie graphique a été gérée par Qt Designer.
+
+Nous avons testé avant d'envoyer, toutes les fenêtres s'ouvrent et aucune erreur ne survient (windows 10, python 3.7.8 64-bit).
+
+Chaque branche git correspond à une partie donnée dans l'ennoncé.
 
 ## Partie 1
 
@@ -21,8 +25,6 @@ Compléter les fonctionnalités proposées :
 
 ## Partie 2
 
-Créer les nouvelles fonctionnalitées proposées.
-
 - [x] **Créer des nouvelles fenêtres** dans l'interface
 	- [x] Afficher l'**âge moyen des équipes qui ont gagné une médaille d'or** (2.1)
 	- [x] Afficher le **classement des pays** selon leur nombre de médailles (pays, nbOr, nbArgent, nbBronze) (2.2)
@@ -31,9 +33,23 @@ Créer les nouvelles fonctionnalitées proposées.
 
 ## Partie 3
 
-Partie libre (2 exemples donnés)
+Partie libre (2 exemples donnés).
 
 - [ ] Imaginer des **nouvells fonctionnalités** de l'application (**insert**, **delete**, **update**, ...)
 	- [ ] Gérer des **inscriptions** à des épreuves
 	- [ ] Gérer des **résultats** aux épreuves
 - [ ] Implémenter un **trigger**
+- [ ] 3.1 : Imaginer des **nouvelles fonctionnalités** de l'application (**insert**, **delete**, **update**, ...)
+	- [x] 3.1.1 : Gérer des **inscriptions** à des épreuves
+        - [x] Faire l'interface graphique
+        - [x] Link l'interface avec le code
+        - [x] Faire les évents de chaque comboBox
+        - [x] Sélectionner les équipes en fonction de la catégorie de l'épreuve
+        - [x] Ajouter la sélection à la table LesInscription
+	- [ ] 3.1.2 : Gérer des **résultats** aux épreuves
+- [ ] 3.2 : Implémenter un **trigger**
+
+
+Nous n'avons pas fini la partie 3 (3.1.2 et 3.2).
+Nous avons seulement fait la partie `insert` de la 3.1.1.
+Les fichiers de la partie 3 dans le dossier action sont `action_add_comp_*.py`.
