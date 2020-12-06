@@ -1,16 +1,21 @@
-WITH
-PaysEquipe AS (
-    SELECT numEq, pays
+WITH sportifsCat AS (
+    SELECT numSp
+    FROM LesSportifs_base
+    WHERE categorieSp = 'masculin'
+), A AS (
+    SELECT numSp, numEq, pays, categorieSp
     FROM LesEquipiers
-    JOIN LesSportifs_base USING (numSp)
-    GROUP BY numEq
+    INNER JOIN LesSportifs_base
+    USING(numSp)
+    WHERE
+        numSp IN sportifsCat AND
+        pays = 'Belgique'
 )
-
-select numEq from LesEquipes
-where numEq IN (
-    select numEq from PaysEquipe
-    where pays = France
-) AND numEq NOT IN (
-    select numIn from LesInscriptions
-    where numEp = 24
+WITH Equipecat AS(
+    SELECT numEq, nbEquipiersEq, pays, categorieSp
+    FROM LesEquipes
+    INNER JOIN A
+    USING(numEq)
+    GROUP BY numEq
+    HAVING COUNT(*) = nbEquipiersEq;
 )

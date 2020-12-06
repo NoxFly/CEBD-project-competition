@@ -63,6 +63,8 @@ class AppAddFct1(QDialog):
     def choise_country(self,value):
         if value == "Choisir un pays":
             self.pays = ""
+            if self.choise_all():
+                self.choise_categorie(self.categorie)
             return
         self.pays = value
         if self.choise_all():
@@ -160,45 +162,80 @@ class AppAddFct1(QDialog):
                 else:
                     add:str = " "
                 if value != "mixte":
-                    cat:str = f" AND categorieSp = {value} "
+                    cat:str = f" AND categorieSp = '{value}' "
                 else:
                     cat:str = " "
                 req = f"""
                 SELECT nomSp, prenomSp
                 from LesSportifs
                 where{add}numSp NOT IN (
-                select numIn from LesInscriptions where numEp = ?
+                    select numIn from LesInscriptions where numEp = ?
                 ){cat}
                 """
-                result = cursor.execute(req,[self.numEp, value])
+                result = cursor.execute(req,[self.numEp])
             else :
                 if self.pays != "":
+                    header1 = """
+                    WITH
+                    PaysEquipe AS (
+                        SELECT numEq, pays
+                        FROM LesEquipiers
+                        JOIN LesSportifs_base USING (numSp)
+                        GROUP BY numEq
+                    )"""
                     add:str = f""" numEq IN (
                     select numEq from PaysEquipe
                     where pays = '{self.pays}'
                     ) AND """
                 else:
                     add:str = " "
-                if self.forme == "en couple":
+                    header1 = ""
+                if self.forme == "par couple":
                     add2:str = " AND nbEquipiersEq = 2"
                 else:
                     add2:str = ""
+                if value == "mixte":
+                    header2:str = " "
+                    cat:str = ""
+                else:
+                    if self.pays != "":
+                        add_pays = f" AND pays = '{self.pays}'"
+                    else:
+                        add_pays = ""
+                    header2:str = f"""
+                    {"," if self.pays else "WITH "}sportifsCat AS (
+                        SELECT numSp
+                        FROM LesSportifs_base
+                        WHERE categorieSp = '{value}'
+                    ), A AS (
+                        SELECT numSp, numEq, pays, categorieSp
+                        FROM LesEquipiers
+                        INNER JOIN LesSportifs_base
+                        USING(numSp)
+                        WHERE
+                            numSp IN sportifsCat{add_pays}
+                    ), Equipecat AS(
+                        SELECT numEq, nbEquipiersEq, pays, categorieSp
+                        FROM LesEquipes
+                        INNER JOIN A
+                        USING(numEq)
+                        GROUP BY numEq
+                        HAVING COUNT(*) = nbEquipiersEq
+                    )
+                    """
+                    cat:str = " AND numEq IN (SELECT numEq from Equipecat)"
                 req = f"""
-                WITH
-                PaysEquipe AS (
-                    SELECT numEq, pays
-                    FROM LesEquipiers
-                    JOIN LesSportifs_base USING (numSp)
-                    GROUP BY numEq
-                )
-
+                {header1}
+                {header2}
                 select numEq from LesEquipes
                 where{add}numEq NOT IN (
                     select numIn from LesInscriptions
                     where numEp = ?
-                ){add2}
+                ){add2}{cat}
                 """
+                print(req)
                 result = cursor.execute(req,[self.numEp])
+
 
         except Exception as e:
             print("probleme")
@@ -207,7 +244,7 @@ class AppAddFct1(QDialog):
         else:
             rows = result.fetchall()
             if rows == []:
-                display.refreshLabel(self.ui.print_label,"Aucun participant ne peut etre ajouter")
+                display.refreshLabel(self.ui.print_label,"Aucun participant ne peut etre ajouté")
                 return
             self.ui.Equipe_combo.clear()
             if self.forme == "individuelle" :

@@ -5,5 +5,5 @@ Inscrire un sportif ou une équipe a une épreuve
 - [x] Faire l'interface graphique
 - [x] Link l'interface avec le code
 - [x] Faire les évents de chaque comboBox
-- [ ] Séléctionner les équipes en fonction de la catégorie de l'épreuve
+- [x] Séléctionner les équipes en fonction de la catégorie de l'épreuve
 - [x] Ajouter la séléction a la table LesInscription
