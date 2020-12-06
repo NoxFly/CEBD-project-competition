@@ -99,6 +99,10 @@ class AppAddFct1(QDialog):
             self.ui.Forme_combo.clear()
             self.ui.Categorie_combo.clear()
             self.ui.Equipe_combo.clear()
+            self.epreuve = ""
+            self.forme = ""
+            self.categorie = ""
+            self.equipe = ""
 
         # no discipline selected
         if value == "Choisir une discipline":
@@ -134,6 +138,9 @@ class AppAddFct1(QDialog):
             self.ui.Forme_combo.clear()
             self.ui.Categorie_combo.clear()
             self.ui.Equipe_combo.clear()
+            self.forme = ""
+            self.categorie = ""
+            self.equipe = ""
 
         # no test selected
         if value == "Choisir une épreuve":
@@ -160,6 +167,8 @@ class AppAddFct1(QDialog):
         if self.forme != "":
             self.ui.Categorie_combo.clear()
             self.ui.Equipe_combo.clear()
+            self.categorie = ""
+            self.equipe = ""
 
         if value == "Choisir une forme":
             self.forme = ""
@@ -184,6 +193,7 @@ class AppAddFct1(QDialog):
     def choose_categorie(self, value):
         if self.categorie != "":
             self.ui.Equipe_combo.clear()
+            self.equipe = ""
 
         if value == "Choisir une catégorie":
             self.categorie = ""
