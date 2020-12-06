@@ -1,8 +1,9 @@
-## Partie 2
+## Partie 3
 
-Créer les nouvelles fonctionnalitées proposées.
-
-- [x] Créer des nouvelles fenêtres dans l'interface
-	- [x] Afficher l'âge moyen des équipes qui ont gagné une médaille d'or (2.1)
-	- [x] Afficher le classement des pays selon leur nombre de médailles (pays, nbOr, nbArgent, nbBronze)
-- [x] Gérer les évènements et les associer à des nouvelles actions
+### 3.1
+Inscrire un sportif ou une équipe a une épreuve
+- [x] Faire l'interface graphique
+- [x] Link l'interface avec le code
+- [x] Faire les évents de chaque comboBox
+- [ ] Séléctionner les équipes en fonction de la catégorie de l'épreuve
+- [x] Ajouter la séléction a la table LesInscription
