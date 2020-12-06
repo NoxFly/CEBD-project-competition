@@ -35,10 +35,6 @@ Compléter les fonctionnalités proposées :
 
 Partie libre (2 exemples donnés).
 
-- [ ] Imaginer des **nouvells fonctionnalités** de l'application (**insert**, **delete**, **update**, ...)
-	- [ ] Gérer des **inscriptions** à des épreuves
-	- [ ] Gérer des **résultats** aux épreuves
-- [ ] Implémenter un **trigger**
 - [ ] 3.1 : Imaginer des **nouvelles fonctionnalités** de l'application (**insert**, **delete**, **update**, ...)
 	- [x] 3.1.1 : Gérer des **inscriptions** à des épreuves
         - [x] Faire l'interface graphique
